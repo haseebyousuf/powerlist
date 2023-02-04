@@ -2,8 +2,106 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .app {
-    text-align: center;
+    max-width: 400px;
+        margin: auto;
+        padding: 1rem;
+        text-align: center;
+}
+.container {
+    h1 {
+        font-size: 3rem;
+    }
+
+
+}
+
+.date {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0 1rem 0;
+
+    p {
+        padding: 0 3px;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+}
+
+.form-input {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+        position: absolute;
+        right: 20px;
+        top: 0;
+        font-size: 25px;
+        color: #4b00ff;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    input {
+        border: 2px solid #eee;
+        padding: 5px 50px 5px 10px;
+        font-size: 1rem;
+        line-height: 2rem;
+        outline: none;
+        display: block;
+        width: 100%;
+        border-radius: 8px;
+    }
+}
+
+.task-row {
+    border: 2px solid #eee;
+    padding: 1rem;
+    height: 3.5rem;
+    font-size: 1rem;
+    line-height: 2rem;
+    margin: 8px 0;
+    border-radius: 8px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+
+    // overflow: hidden;
+    p {
+        text-transform: capitalize;
+        display: flex;
+        flex-wrap: wrap;
+
+        input {
+            margin: 6px;
+            height: 20px;
+            width: 20px;
+        }
+    }
+
+    svg {
+        font-size: 25px;
+        color: red;
+        cursor: pointer;
+    }
+}
+
+.message {
+    // margin: 1rem;
+    padding: 1rem;
+}
+
+.completed {
+    background-color: #ccc;
+    text-decoration: line-through;
 }
