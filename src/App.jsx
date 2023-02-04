@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { GiHornedHelm } from "react-icons/gi";
-import { AiOutlinePlus } from "react-icons/ai";
+import { AiOutlinePlus, AiOutlineClose } from "react-icons/ai";
 function App() {
     const [tasks, setTasks] = useState([]);
     const [task, setTask] = useState("");
@@ -8,6 +8,10 @@ function App() {
     //add task
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (task === "") {
+            alert("Enter some Task Man!");
+            return;
+        }
         const newTask = {
             id: Math.floor(Math.random() * 1000),
             taskName: task,
@@ -21,7 +25,6 @@ function App() {
     const deleteTask = (id) => {
         let fiteredTasks = [...tasks].filter((task) => task.id !== id);
         setTasks(fiteredTasks);
-        console.log("Deleted");
     };
 
     //toggle completed
@@ -71,30 +74,44 @@ function App() {
                     <p>{date.getFullYear()}</p>
                 </div>
                 <form onSubmit={handleSubmit}>
-                    <AiOutlinePlus />
-                    <input
-                        value={task}
-                        onChange={(e) => setTask(e.target.value)}
-                        type="text"
-                        placeholder="Add a Task"
-                    />
+                    <div className="form-input">
+                        <AiOutlinePlus onClick={handleSubmit} />
+                        <input
+                            value={task}
+                            onChange={(e) => setTask(e.target.value)}
+                            type="text"
+                            placeholder="Add a Task"
+                        />
+                    </div>
                 </form>
 
                 <div>
                     {tasks.map((task) => (
                         <div
                             key={task.id}
-                            onDoubleClick={() => toggleComplete(task.id)}
+                            className={`task-row ${
+                                task.completed ? "completed" : ""
+                            }`}
                         >
                             <p>
+                                <input
+                                    type="checkbox"
+                                    onClick={() => toggleComplete(task.id)}
+                                ></input>
                                 {task.taskName}
-                                <button onClick={() => deleteTask(task.id)}>
-                                    Delete
-                                </button>
                             </p>
+                            <AiOutlineClose
+                                onClick={() => deleteTask(task.id)}
+                                className="close"
+                            />
                         </div>
                     ))}
                 </div>
+                <p className="message">
+                    {tasks.length < 1
+                        ? "You Have No Tasks!"
+                        : `Tasks: ${tasks.length}`}
+                </p>
             </div>
         </div>
     );
