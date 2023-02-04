@@ -25,8 +25,14 @@ function App() {
     };
 
     //toggle completed
+    const toggleComplete = (id) => {
+        setTasks(
+            tasks.map((task) =>
+                task.id === id ? { ...task, completed: !task.completed } : task
+            )
+        );
+    };
 
-    const toggleComplete = (id) => {};
     const date = new Date();
     const days = [
         "Sunday",
@@ -76,7 +82,10 @@ function App() {
 
                 <div>
                     {tasks.map((task) => (
-                        <div key={task.id}>
+                        <div
+                            key={task.id}
+                            onDoubleClick={() => toggleComplete(task.id)}
+                        >
                             <p>
                                 {task.taskName}
                                 <button onClick={() => deleteTask(task.id)}>
